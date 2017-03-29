@@ -34,10 +34,24 @@
 <div>
       
 <?php
-
+try
+					{
+					$req2 = $bd->prepare('SELECT DISTINCT devoir FROM devoir_create where type = :prof and groupe = :gro and formation = :formt');
+					 $req2->bindValue(':prof',$_GET['Professeurs']);
+				     $req2->bindValue(':gro',$_GET['groupe']);
+				     $req2->bindValue(':format',$_SESSION['formation']);
+				     $req2->execute();
+					while($res2 = $req2->fetch(PDO::FETCH_NUM))
+						echo '<option> '. $res2[0] . '</option>'."\n";
+					}
+					catch(PDOException $e)
+				{
+				// On termine le script en affichant le num de l'erreur ainsi que le message 
+    			die('<p> Erreur PDO[' .$e->getCode().'] : ' .$e->getMessage() . '</p>');
+				}
 //afficher les fichiers 
-$nom='rEEIIN.php';
-if ($_SESSION['formation'='Electronique']){
+$nom='liste.php';
+if ($_SESSION['formation']='Electronique']){
 
 $dir = '/upload/rEEIIN/Electronique/';
 if(is_dir($dir)) {
@@ -56,64 +70,8 @@ if(is_dir($dir)) {
      }
 }
 }
-if ($_SESSION['formation'='Electricite']){
 
-$dir = '/upload/rEEIIN/Electricite/';
-if(is_dir($dir)) {
-        if ($dh = opendir($dir)) {
-        while (($file = readdir($dh)) !== false) {
-                if($file!="." && $file!="..") {
-                    if($_SESSION['type']=='Professeur' && $_SESSION['formation']=='EEIIN'){
-                       echo "<li><a href='./supprimer.php?name={$file}&url={$dir}&formation={$nom}'><span class=\"glyphicon glyphicon-remove\"></span></a><a href='".$dir.$file."'>".$file."</a></li>"; 
-                    }
-                    else{
-                    echo "<li><a href='".$dir.$file."'>".$file."</a></li>";
-                    }
-                }                                                                            
-        }
-        closedir($dh);
-     }
-}
-}
 
-if ($_SESSION['formation'='Informatique Industrielle']){
-
-$dir = '/upload/rEEIIN/Informatique Industrielle/';
-if(is_dir($dir)) {
-        if ($dh = opendir($dir)) {
-        while (($file = readdir($dh)) !== false) {
-                if($file!="." && $file!="..") {
-                    if($_SESSION['type']=='Professeur' && $_SESSION['formation']=='EEIIN'){
-                       echo "<li><a href='./supprimer.php?name={$file}&url={$dir}&formation={$nom}'><span class=\"glyphicon glyphicon-remove\"></span></a><a href='".$dir.$file."'>".$file."</a></li>"; 
-                    }
-                    else{
-                    echo "<li><a href='".$dir.$file."'>".$file."</a></li>";
-                    }
-                }                                                                            
-        }
-        closedir($dh);
-     }
-}
-}
-if ($_SESSION['formation'='Nanotechnologie']){
-
-$dir = '/upload/rEEIIN/Nanotechnologie/';
-if(is_dir($dir)) {
-        if ($dh = opendir($dir)) {
-        while (($file = readdir($dh)) !== false) {
-                if($file!="." && $file!="..") {
-                    if($_SESSION['type']=='Professeur' && $_SESSION['formation']=='EEIIN'){
-                       echo "<li><a href='./supprimer.php?name={$file}&url={$dir}&formation={$nom}'><span class=\"glyphicon glyphicon-remove\"></span></a><a href='".$dir.$file."'>".$file."</a></li>"; 
-                    }
-                    else{
-                    echo "<li><a href='".$dir.$file."'>".$file."</a></li>";
-                    }
-                }                                                                            
-        }
-        closedir($dh);
-     }
-}
-}
 ?>
 </ul>
 </div>
