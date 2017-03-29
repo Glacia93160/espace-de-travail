@@ -23,7 +23,7 @@
 	   echo "<script> {window.alert('Vous n'avez pas besion de faire les devoirs! ');location.href='create.php'} </script>";
 	}
 	
-	*/
+	
 ?>
 
 <!--nav pour que les Professeurs peuvent regarder les fichiers de touts les formations-->
