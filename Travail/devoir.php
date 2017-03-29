@@ -8,41 +8,19 @@
 <div class="container" style="margin : 100px">
 		
 <?php			
-   /* if(!isset($_SESSION['connexion']))
+    if(!isset($_SESSION['connexion']))
 	{
 		header("Location:./../Connexion.php");
 		exit();
 	}
 	//droit d'acces pour les stagiaires selon leur formation
-	elseif ($_SESSION['categorie']=='stagiaire'  ) {
-	    if($_SESSION['formation']=='MDI'){
-	       header("Location:rMDI.php"); 
-	    }
-	    
-	    elseif ($_SESSION['formation']=='GCRHM') {
-	        header("Location:rGCRHM.php");
-	    }
-	    
-	    elseif ($_SESSION['formation']=='JHF') {
-	        header("Location:rJHF.php");
-	    }
-	    
-	    elseif ($_SESSION['formation']=='ISL') {
-	        header("Location:rISL.php");
-	    }
-	    
-	    elseif ($_SESSION['formation']=='RT') {
-	        header("Location:rRT.php");
-	    }
-	    
-	    elseif ($_SESSION['formation']=='EEIIN') {
-	        header("Location:rEEIIN.php");
-	    }
-	    
+	elseif ($_SESSION['type']=='Ancien_Etudiant'  ) {
+	   echo "<script> {window.alert('Vous n'avez pas besion de deposer les devoirs! ');location.href='Acceuil.php'} </script>";
+	   
 	}
 	
-	elseif ($_SESSION['categorie']=='Professeur') {
-	    echo'<p>Vous êtes sur la formation '.$_SESSION['formation'].'. </p>';
+	elseif ($_SESSION['type']=='Professeur') {
+	   echo "<script> {window.alert('Vous n'avez pas besion de faire les devoirs! ');location.href='create.php'} </script>";
 	}
 	
 	*/
